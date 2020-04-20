@@ -15,5 +15,3 @@ Malheureusement, durant cette épopée, nos 4 individus vont traverser différen
 Afin de pouvoir jouer à ce jeux ou en comprendre le fonctionnement, veuillez vous reporter sur ses deux autre repositories:
 
 Client/Server : https://github.com/Ychabot-thomas/OstaraJS
-
-React : https://github.com/Ychabot-thomas/Ostara
