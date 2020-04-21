@@ -27,13 +27,16 @@ public class IsWalkingAnimation : MonoBehaviour
             anim.SetBool("isWalking", false);
         } 
         
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("isJumping", true);
         }
         else
         {
-            anim.SetBool("isJumping", false);
+            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                anim.SetBool("isJumping", false);
+            }
         }
         if (Input.GetKey(KeyCode.P))
         {

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Animator anim;
 
+
     [SerializeField] private float speed = 15f;
     [SerializeField] private float jumpSpeed = 8f;
     [SerializeField] private Rigidbody rigidbody;
@@ -52,14 +53,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Space)&& !_isFalling)
+        if (Input.GetKeyDown(KeyCode.Space)&& !_isFalling)
         {
             _direction.y += 1f;
             anim.SetBool("isJumping", true);
         }
         else
         {
-            anim.SetBool("isJumping", false);
+            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                anim.SetBool("isJumping", false);
+            }
         }
         
         if (Input.GetKey(KeyCode.P))

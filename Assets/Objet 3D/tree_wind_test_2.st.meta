@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99eb355ded9b84483ae53b5854e4adb9
+guid: 7a121ed595f5e457d9e7d5742e9c7f5d
 SpeedTreeImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -9,24 +9,6 @@ SpeedTreeImporter:
   bestWindQuality: 4
   hasBillboard: 0
   lODSettings:
-  - height: 0.5
-    castShadows: 1
-    receiveShadows: 1
-    useLightProbes: 1
-    reflectionProbeUsage: 1
-    enableBump: 1
-    enableHue: 1
-    enableSubsurface: 1
-    windQuality: 4
-  - height: 0.25
-    castShadows: 1
-    receiveShadows: 1
-    useLightProbes: 1
-    reflectionProbeUsage: 1
-    enableBump: 1
-    enableHue: 1
-    enableSubsurface: 1
-    windQuality: 4
   - height: 0.01
     castShadows: 1
     receiveShadows: 1
