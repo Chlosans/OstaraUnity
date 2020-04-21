@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 5a34522228e4546588805223581c4fe9
+guid: 47586a729ddcc4db4bef82a009ee548f
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: 5685697100008369186
+      74: -5828376707423392728
     second: idle
   - first:
       74: -3889830323219305035
     second: walking
   - first:
-      74: -7097420712012039183
-    second: planter
+      74: -5494993162824052015
+    second: plant
   - first:
-      74: -7620468718608648079
-    second: pickup
+      74: -394925343269008741
+    second: pick
   - first:
       74: -2993534804863918692
     second: jump
@@ -27,7 +27,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
+    resampleCurves: 0
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
@@ -36,9 +36,9 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 1
+    importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -48,10 +48,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: idle
-      takeName: Animation
+      takeName: Armature.013|Armature.008Action.002
       internalID: 0
       firstFrame: 6
-      lastFrame: 63
+      lastFrame: 111
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -77,10 +77,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: walking
-      takeName: Animation
+      takeName: Armature.013|Armature.008Action.002
       internalID: 0
-      firstFrame: 68
-      lastFrame: 101
+      firstFrame: 116
+      lastFrame: 149
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -105,11 +105,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: planter
-      takeName: Animation
+      name: plant
+      takeName: Armature.013|Armature.008Action.002
       internalID: 0
-      firstFrame: 110
-      lastFrame: 266
+      firstFrame: 154
+      lastFrame: 282
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -134,11 +134,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: pickup
-      takeName: Animation
+      name: pick
+      takeName: Armature.013|Armature.008Action.002
       internalID: 0
-      firstFrame: 272
-      lastFrame: 330
+      firstFrame: 284
+      lastFrame: 360
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -164,10 +164,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: jump
-      takeName: Animation
+      takeName: Armature.013|Armature.008Action.002
       internalID: 0
-      firstFrame: 340
-      lastFrame: 436
+      firstFrame: 363
+      lastFrame: 420
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
