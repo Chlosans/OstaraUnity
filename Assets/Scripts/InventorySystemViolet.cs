@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystemViolet : MonoBehaviour
 {
     public GameObject quantiteText;
     public static int quantiteCristaux;
