@@ -6,5 +6,11 @@ using UnityEngine;
 
 public class CameraLimit : MonoBehaviour
 {
-   
+    public CinemachineVirtualCamera vcam;
+
+    private void Start()
+    {
+        
+    }
+
 }
