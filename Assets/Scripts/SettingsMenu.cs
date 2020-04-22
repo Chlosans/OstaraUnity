@@ -29,5 +29,10 @@ public class SettingsMenu : MonoBehaviour
         
         PlayerPrefs.Save();
     }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 }

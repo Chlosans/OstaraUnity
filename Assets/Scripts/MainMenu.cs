@@ -18,10 +18,7 @@ public class MainMenu : MonoBehaviour
     
     //fonction à faire : si le user appuie sur continuer la partie -> mettre la variable globale "continuerPartie" à true et appeler la fonction ConnectManette()
     
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+   
 
 
 }
