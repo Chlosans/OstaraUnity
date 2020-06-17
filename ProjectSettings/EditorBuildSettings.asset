@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: f6856b964b7e741ccb42e583fabc015b
   - enabled: 1
     path: Assets/Scenes/Accueil.unity
     guid: 9bff24cb35349421aa7b297c02edef4c
@@ -16,5 +22,20 @@ EditorBuildSettings:
     guid: 1f63cad4117c648249daf9bfe4e74237
   - enabled: 1
     path: Assets/Scenes/Scene1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 0e3efd4a2515d4da2b582d4b0e89f253
+  - enabled: 1
+    path: Assets/Scenes/CinematiqueAbandonCristaux.unity
+    guid: 5ea70a5828a064c0cb67ea0be4cad799
+  - enabled: 1
+    path: Assets/Scenes/CinematiqueAbandonGraines.unity
+    guid: 073950620ea144c44bb902140a384200
+  - enabled: 1
+    path: Assets/Scenes/desert.unity
+    guid: ce43830d2865d41f6af6a76733bed4a4
+  - enabled: 1
+    path: Assets/Scenes/ostara_good.unity
+    guid: 1313bddd31c7c4f1f901080dd1fba5cb
+  - enabled: 1
+    path: Assets/Scenes/ostara_bad.unity
+    guid: 96ccbed08d8224e41b4ea705807c597d
   m_configObjects: {}

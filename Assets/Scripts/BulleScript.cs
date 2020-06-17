@@ -3,53 +3,70 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using SocketEvent;
 
 public class BulleScript : MonoBehaviour
 {
+    private FirstPassage _testJson;
+    public GameObject Bulle;
     public string[] Phrase;
-    private TextMeshProUGUI Txt;
+    private Text Txt;
     public bool defilement = true;
     public float speed;
     private string TxtDepart;
     public int Duration = 2;
-    public bool ExitOnResponse=false;
+    public bool ExitOnResponse = false;
+    private int ligne = 0;
+    public GameObject Choix;
 
     private void Start()
     {
-        Txt = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        if (Activation.player1 == true && Activation.player2 == true && Activation.player3 == true &&
-            Activation.player4 == true)
-        {
-            TxtDepart = Phrase[1].Replace("¶",System.Environment.NewLine);
-        }
-        else
-        {
-            TxtDepart = Phrase[0].Replace("¶",System.Environment.NewLine);
-        }
+        Txt = transform.GetChild(0).GetComponent<Text>();
         StartCoroutine(AfficheText());
     }
 
     IEnumerator AfficheText()
     {
-        string temps = TxtDepart;
-        int nbChar = TxtDepart.Length;
-
-        for (int i = 0; i < nbChar; i++)
+        if (ligne != 9)
         {
-            yield return new WaitForSeconds(speed);
-            Txt.text = temps.Substring(0, i);
+            TxtDepart = Phrase[ligne].Replace("¶", System.Environment.NewLine);
+            string temps = TxtDepart;
+            int nbChar = TxtDepart.Length;
+
+            for (int i = 0; i < nbChar; i++)
+            {
+                yield return new WaitForSeconds(speed);
+                Txt.text = temps.Substring(0, i + 1);
+            }
+
+            ligne = ligne + 1;
+            StartCoroutine(ElementSuivant());
         }
-        
-        StartCoroutine(RefreshDiscussion());
+        else
+        {
+            Choix.SetActive(true);
+            Bulle.SetActive(false);
+
+            // envoie au manette le fait qu'il faut afficher la div choice du mobile
+            _testJson = new FirstPassage();
+            _testJson.eventName = "firstPassage";
+            _testJson.afficheDiv = "affiche div Choice";
+
+            SocketEvent.Client.sendMessage(SocketEvent.Client.ConvertDataObject(_testJson));
+        }
     }
 
-    IEnumerator RefreshDiscussion()
+    IEnumerator ElementSuivant()
     {
-        Debug.Log("Refresh");
         yield return new WaitForSeconds(Duration);
+        StartCoroutine(AfficheText());
 
-        TxtDepart = Phrase[0].Replace("¶", System.Environment.NewLine);
-            StartCoroutine(AfficheText());
-        
     }
+}
+
+public class FirstPassage
+{
+    public string eventName;
+    public string afficheDiv;
 }

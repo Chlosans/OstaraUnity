@@ -1,60 +1,148 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SocketEvent;
 
-public class IsWalkingAnimation : MonoBehaviour
+// réception mouvements/aniamtions/jumps du joueur 1
+namespace walkingPlayerAnimation
 {
-    public Animator anim;
-    private Vector3 _direction;
-    
-    void Start()
+    public class IsWalkingAnimation : MonoBehaviour
     {
-        anim = GetComponent<Animator>();
-    }
+        public Animator anim;
+        private Vector3 _direction;
+        public static string moveAnimation;
+        public static string jumpAnimation;
+        public static string planteAnimation;
+        public static string recolteAnimation;
+        public static bool firstPlante = true;
+        public static bool firstRecolte = true;
 
-   
-    void Update()
-    {
-        _direction.x = Input.GetAxisRaw("Horizontal");
-        _direction.z = Input.GetAxisRaw("Vertical");
 
-        if (_direction.z != 0 || _direction.x != 0)
+        void Start()
         {
-            anim.SetBool("isWalking", true);
+            anim = GetComponent<Animator>();
         }
-        else
+
+        public static void JoystickAnimation(string data)
         {
-            anim.SetBool("isWalking", false);
-        } 
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetBool("isJumping", true);
+            // Debug.Log("Animation");
+            moveAnimation = data;
         }
-        else
+
+        public static void JumpAnimation(string data)
         {
-            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-            {
-                anim.SetBool("isJumping", false);
-            }
+            jumpAnimation = data;
         }
-        if (Input.GetKey(KeyCode.P))
+
+        public static void PlanteAnimation(string data)
         {
-            anim.SetBool("isPick", true);
+            planteAnimation = data;
         }
-        else
+
+        public static void RecolteAnimation(string data)
         {
-            anim.SetBool("isPick", false);
+            recolteAnimation = data;
         }
-        if (Input.GetKey(KeyCode.U))
+
+        IEnumerator PlayAnimPlant()
         {
             anim.SetBool("isPlant", true);
-        }
-        else
-        {
+            yield return new WaitForSeconds(15);
             anim.SetBool("isPlant", false);
         }
 
+        IEnumerator PlayAnimRam()
+        {
+            anim.SetBool("isPick", true);
+            yield return new WaitForSeconds(15);
+            anim.SetBool("isPick", false);
+        }
 
+
+        void Update()
+        {
+            // _direction.x = Input.GetAxisRaw("Horizontal");
+            // _direction.z = Input.GetAxisRaw("Vertical");
+
+            // ------------------
+
+            if (moveAnimation == "{\"data\":\"X0Y01\"}")
+            {
+                _direction.x = 0;
+                _direction.z = 0;
+            }
+
+            if (moveAnimation == "{\"data\":\"X1Y11\"}")
+            {
+                _direction.x += 1;
+                _direction.z += 1;
+            }
+
+            if (moveAnimation == "{\"data\":\"X-1Y-11\"}")
+            {
+                _direction.x -= 1;
+                _direction.z -= 1;
+            }
+
+            if (moveAnimation == "{\"data\":\"X1Y01\"}" || moveAnimation == "{\"data\":\"X1Y-01\"}")
+            {
+                _direction.x += 1;
+            }
+
+            if (moveAnimation == "{\"data\":\"X0Y11\"}" || moveAnimation == "{\"data\":\"X-0Y11\"}")
+            {
+                _direction.z += 1;
+            }
+
+            if (moveAnimation == "{\"data\":\"X-1Y01\"}" || moveAnimation == "{\"data\":\"X-1Y-01\"}")
+            {
+                _direction.x -= 1;
+            }
+
+            if (moveAnimation == "{\"data\":\"X0Y-11\"}" || moveAnimation == "{\"data\":\"X-0Y-11\"}")
+            {
+                _direction.z -= 1;
+            }
+
+            if (_direction.z != 0 || _direction.x != 0)
+            {
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+
+            if (jumpAnimation == "{\"data\":\"jump1\"}")
+            {
+                _direction.y += 1f;
+                anim.SetBool("isJumping", true);
+            }
+            else
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+                {
+                    anim.SetBool("isJumping", false);
+                }
+            }
+
+            if (firstPlante == true)
+            {
+                if (planteAnimation == "{\"data\":\"clickPlante\"}")
+                {
+                    StartCoroutine(PlayAnimPlant());
+                    firstPlante = false;
+                }
+            }
+
+            if (firstRecolte == true)
+            {
+                if (recolteAnimation == "{\"data\":\"clickRecolte\"}")
+                {
+                    StartCoroutine(PlayAnimRam());
+                    firstRecolte = false;
+                }
+            }
+        }
     }
 }

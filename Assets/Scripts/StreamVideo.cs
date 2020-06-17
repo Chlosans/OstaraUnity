@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using SocketEvent;
 
 public class StreamVideo : MonoBehaviour
 {
+    private ManetteJson _testJson;
     public RawImage rawImage;
     public VideoPlayer videoPlayer;
     [SerializeField] private bool changeScene;
     private float timer = 2f;
-    
+
     void Start()
     {
         StartCoroutine(PlayVideo());
@@ -30,21 +32,30 @@ public class StreamVideo : MonoBehaviour
         rawImage.texture = videoPlayer.texture;
         videoPlayer.Play();
     }
-    
+
     private void LoadScene()
     {
-        if (!videoPlayer.isPlaying) 
+        if (!videoPlayer.isPlaying)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1); 
-        } 
+            // Envoi aux manettes une information que la vidéo et fini et active la manette et/ou un obstacle
+            Debug.Log("Intro Fini");
+            _testJson = new ManetteJson();
+            _testJson.eventName = "videoMobileFini";
+            _testJson.finVideo = "videoFinish";
+
+            SocketEvent.Client.sendMessage(SocketEvent.Client.ConvertDataObject(_testJson));
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
     }
-    
+
     void Update()
     {
         if (changeScene)
         {
             timer -= Time.deltaTime;
-            if (timer<=0)
+            if (timer <= 0)
             {
                 timer = 1f;
                 LoadScene();
@@ -52,4 +63,10 @@ public class StreamVideo : MonoBehaviour
         }
 
     }
+}
+
+public class ManetteJson
+{
+    public string eventName;
+    public string finVideo;
 }
